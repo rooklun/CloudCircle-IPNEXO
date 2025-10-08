@@ -1,11 +1,10 @@
 <template>
-  <div
-    class="min-h-screen bg-gradient-to-r from-indigo-900 to-slate-900 text-slate-100 font-sans"
-  >
-    <Header />
-    <router-view />
-    <Footer />
-  </div>
+  <main class="container mx-auto px-6 lg:px-12 py-12">
+    <Hero />
+    <Services />
+    <Features />
+    <ContactForm />
+  </main>
 </template>
 
 <script setup>
@@ -16,3 +15,7 @@ import Features from "@/components/Features.vue";
 import ContactForm from "@/components/ContactForm.vue";
 import Footer from "@/components/Footer.vue";
 </script>
+<!-- 
+<template>
+    <h1>路由测试</h1>
+</template> -->
