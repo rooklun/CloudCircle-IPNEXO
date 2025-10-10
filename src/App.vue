@@ -2,9 +2,7 @@
   <div
     class="min-h-screen bg-gradient-to-r from-indigo-900 to-slate-900 text-slate-100 font-sans"
   >
-    <Header />
     <router-view />
-    <Footer />
   </div>
 </template>
 

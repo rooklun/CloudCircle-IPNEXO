@@ -14,6 +14,7 @@ import Services from "@/components/Services.vue";
 import Features from "@/components/Features.vue";
 import ContactForm from "@/components/ContactForm.vue";
 import Footer from "@/components/Footer.vue";
+import Logo from "@/components/Logo.vue";
 </script>
 <!-- 
 <template>

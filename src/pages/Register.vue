@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-900">
+  <div class="min-h-screen flex items-center justify-center bg-transparent">
     <div class="bg-gray-800 shadow-2xl rounded-2xl p-10 w-full max-w-md">
       
       <h2 class="text-3xl font-bold text-center mb-6 text-white">注册账号</h2>

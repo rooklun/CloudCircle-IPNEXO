@@ -1,19 +1,41 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
+import DefaultLayout from '@/components/DefaultLayout.vue'
+import BlankLayout from '@/components/BlankLayout.vue' 
 
-// 导入页面组件
-import Home from '@/pages/Home.vue'
-import Register from '@/pages/Register.vue'
-import Contact from '@/pages/Contact.vue'
-import Login from '@/pages/Login.vue'
-
-// 定义路由规则
 const routes = [
-  { path: '/', name: 'Home', component: Home },
-  { path: '/login', name: 'login', component: Login },
-  { path: '/register', name: 'Register', component: Register },
-  { path: '/contact', name: 'Contact', component: Contact },
-  { path: '/:pathMatch(.*)*', redirect: '/' } // 防止 404
+  {
+    path: '/',
+    component: DefaultLayout,
+    children: [
+      {
+        path: '/',
+        name: 'Home',
+        component: () => import('@/pages/Home.vue')
+      },
+      {
+        path: '/login',
+        name: 'Login',
+        component: () => import('@/pages/Login.vue')
+      },
+      {
+        path: '/register',
+        name: 'Register',
+        component: () => import('@/pages/Register.vue')
+      }
+    ]
+  },
+  {
+    path: '/user',
+    component: BlankLayout,
+    children: [
+      {
+        path: '',
+        name: 'User',
+        component: () => import('@/pages/User/User.vue')
+      }
+    ]
+  }
 ]
 
 // 创建路由实例
