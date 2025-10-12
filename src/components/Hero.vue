@@ -9,7 +9,7 @@
     <!-- <a href="#services" class="bg-blue-500 px-6 py-3 rounded-lg text-white">查看服务</a> -->
     <a
       href="#services"
-      class="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg transition-transform duration-300 hover:scale-160 hover:bg-blue-700"
+      class="inline-block px-6 py-2 border border-white/30 p-6 text-white rounded-lg transition-transform duration-300 hover:scale-160 hover:bg-white/30"
     >
       查看服务
     </a>

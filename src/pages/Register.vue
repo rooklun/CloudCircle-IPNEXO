@@ -44,29 +44,60 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import http from '@/utils/http'
 import API_BASE_URL from '@/config/api.js'
+import { useAuthStore } from '@/stores/auth'
 
+const router = useRouter()
+const authStore = useAuthStore()
 const username = ref('')
 const email = ref('')
 const password = ref('')
-const success = ref(false)
 const errorMsg = ref('')
+const success = ref(false)
+
 
 const register = async () => {
-  success.value = false;
   errorMsg.value = '';
   try {
-    const res = await http.post(`${API_BASE_URL}/api/users/register`, {
+    const res = await http.post(`${API_BASE_URL}/api/auth/register`, {
       username: username.value,
       email: email.value,
       password: password.value
     })
-    if (res.success) {
-      success.value = true;
+    
+    console.log("res:", res)
+    if (res.token) {
+      // 保存登录状态
+      authStore.setToken(res.token)
+      authStore.setUser(res.user)
+      success.value = true
+      
+      setTimeout(() => {
+        router.push('/user')
+      }, 1500)
     }
-  } catch (err) {
-    errorMsg.value = err.response?.data?.error || '注册失败，请稍后再试。'
+  } catch (error) {
+    console.error('注册错误详情:', error.response.data.message)
+
+    if (error.response?.status) {
+      switch (error.response.status) {
+        case 400:
+          errorMsg.value = error.response.data.errors?.[0]?.msg || '输入数据有误，请检查'
+          break;
+        case 401:
+          errorMsg.value = error.response.data.message || '用户名或邮箱已被使用'
+          break;
+        case 500:
+          errorMsg.value = '网络错误'
+          break;
+        default:
+          errorMsg.value = '错误的响应码'
+      }
+    } else {
+      errorMsg.value = '网络错误'
+    }
   }
 }
 </script>

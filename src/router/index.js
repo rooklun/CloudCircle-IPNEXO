@@ -1,48 +1,67 @@
 // src/router/index.js
-import { createRouter, createWebHistory } from 'vue-router'
-import DefaultLayout from '@/components/DefaultLayout.vue'
-import BlankLayout from '@/components/BlankLayout.vue' 
+import { createRouter, createWebHistory } from "vue-router";
+import DefaultLayout from "@/components/DefaultLayout.vue";
+import BlankLayout from "@/components/BlankLayout.vue";
+import { useAuthStore } from "@/stores/auth.js"; // 需要创建这个 store
 
 const routes = [
   {
-    path: '/',
+    path: "/",
     component: DefaultLayout,
     children: [
       {
-        path: '/',
-        name: 'Home',
-        component: () => import('@/pages/Home.vue')
+        path: "/",
+        name: "Home",
+        component: () => import("@/pages/Home.vue"),
       },
       {
-        path: '/login',
-        name: 'Login',
-        component: () => import('@/pages/Login.vue')
+        path: "/login",
+        name: "Login",
+        component: () => import("@/pages/Login.vue"),
       },
       {
-        path: '/register',
-        name: 'Register',
-        component: () => import('@/pages/Register.vue')
-      }
-    ]
+        path: "/register",
+        name: "Register",
+        component: () => import("@/pages/Register.vue"),
+      },
+    ],
   },
   {
-    path: '/user',
+    path: "/user",
     component: BlankLayout,
     children: [
       {
-        path: '',
-        name: 'User',
-        component: () => import('@/pages/User/User.vue')
-      }
-    ]
-  }
-]
+        path: "",
+        name: "User",
+        component: () => import("@/pages/User/User.vue"),
+      },
+    ],
+    meta: {
+      requiresAuth: true, // 添加需要认证的标记
+    }
+  },
+];
 
 // 创建路由实例
 const router = createRouter({
   history: createWebHistory(), // history 模式
-  routes
+  routes,
+});
+
+// 全局路由守卫
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore()
+  
+  if (to.meta.requiresAuth && !authStore.isLoggedIn) {
+    // 需要认证但未登录，重定向到登录页
+    next({
+      path: '/login',
+      query: { redirect: to.fullPath }  // 保存原目标路径
+    })
+  } else {
+    next()
+  }
 })
 
 // 导出路由实例
-export default router
+export default router;
