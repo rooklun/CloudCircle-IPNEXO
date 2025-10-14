@@ -28,17 +28,27 @@ const routes = [
   },
   {
     path: "/user",
-    component: BlankLayout,
+    component: () => import('../pages/User/User.vue'),
     children: [
       {
         path: "",
-        name: "User",
-        component: () => import("@/pages/User/User.vue"),
+        name: "UserDashboard",
+        component: () => import("@/components/User/MainContent.vue"),
+      },
+      {
+        path: "buy-ip",
+        name: "BuyIP",
+        component: () => import("@/components/User/BuyIP.vue"),
+      },
+      {
+        path: "manage-ip",
+        name: "ManageIP",
+        component: () => import("@/components/User/ManageIP.vue"),
       },
     ],
     meta: {
       requiresAuth: true, // 添加需要认证的标记
-    }
+    },
   },
 ];
 
@@ -50,18 +60,18 @@ const router = createRouter({
 
 // 全局路由守卫
 router.beforeEach((to, from, next) => {
-  const authStore = useAuthStore()
-  
+  const authStore = useAuthStore();
+
   if (to.meta.requiresAuth && !authStore.isLoggedIn) {
     // 需要认证但未登录，重定向到登录页
     next({
-      path: '/login',
-      query: { redirect: to.fullPath }  // 保存原目标路径
-    })
+      path: "/login",
+      query: { redirect: to.fullPath }, // 保存原目标路径
+    });
   } else {
-    next()
+    next();
   }
-})
+});
 
 // 导出路由实例
 export default router;

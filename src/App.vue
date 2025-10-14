@@ -7,10 +7,10 @@
 </template>
 
 <script setup>
-import Header from "@/components/Header.vue";
-import Hero from "@/components/Hero.vue";
-import Services from "@/components/Services.vue";
-import Features from "@/components/Features.vue";
-import ContactForm from "@/components/ContactForm.vue";
-import Footer from "@/components/Footer.vue";
+import Header from "@/components/Index/Header.vue";
+import Hero from "@/components/Index/Hero.vue";
+import Services from "@/components/Index/Services.vue";
+import Features from "@/components/Index/Features.vue";
+import ContactForm from "@/components/Index/ContactForm.vue";
+import Footer from "@/components/Index/Footer.vue";
 </script>
