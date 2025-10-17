@@ -2,8 +2,8 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import './styles/tailwind.css'
-import i18n from './plugins/i18n'
-import router from './router' 
+import i18n from './plugins/i18n.ts'
+import router from './router/index.ts' 
 
 const app = createApp(App)
 const pinia = createPinia()

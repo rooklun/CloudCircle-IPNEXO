@@ -2,23 +2,14 @@
 
 html {
   scroll-behavior: smooth;
-  
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+body {
+  font-family: "Inter", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
 }
-
-::-webkit-scrollbar-track {
-  background: #161b22;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+.gradient-bg {
+  background: linear-gradient(180deg, #fdf7f2 0%, #ffffff 100%);
 }

@@ -1,8 +1,7 @@
 // src/router/index.js
 import { createRouter, createWebHistory } from "vue-router";
 import DefaultLayout from "@/components/DefaultLayout.vue";
-import BlankLayout from "@/components/BlankLayout.vue";
-import { useAuthStore } from "@/stores/auth.js"; // 需要创建这个 store
+import { useAuthStore } from "@/stores/auth.ts"; // 需要创建这个 store
 
 const routes = [
   {
@@ -59,7 +58,7 @@ const router = createRouter({
 });
 
 // 全局路由守卫
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   const authStore = useAuthStore();
 
   if (to.meta.requiresAuth && !authStore.isLoggedIn) {
