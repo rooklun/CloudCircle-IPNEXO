@@ -1,38 +1,50 @@
 <template>
     <div class="flex items-center space-x-4">
-        <button
-            class="px-5 py-2 text-sm font-medium text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-cyan-500 transition-all duration-200">
-            充值
-        </button>
+        <div class="recharge-wrap">
+            <button class="recharge-btn" type="button">
+                <span class="btn-text">充值</span>
+            </button>
+        </div>
+
         <div class="relative">
-            <div @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave"
-                class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
+            <div
+                @mouseenter="handleMouseEnter"
+                @mouseleave="handleMouseLeave"
+                class="w-8 h-8 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-50 border border-gray-200 shadow-sm"
+            >
+                <img class="h-5 w-5" src="@/assets/img/user-user.png" alt="用户">
             </div>
 
-            <!-- 用户菜单 -->
-            <div v-show="isUserMenuOpen" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave"
-                class="absolute right-0 mt-2 w-48 bg-[#111827] rounded-md shadow-lg py-1 border border-gray-800 z-50">
-                <!-- 用户信息部分 -->
-                <div class="px-4 py-2 border-b border-gray-800">
-                    <p class="text-sm text-white">{{ authStore.user?.username }}</p>
-                    <p class="text-xs text-gray-400">{{ authStore.user?.email }}</p>
+            <!-- 用户菜单（浅色主题） -->
+            <div
+                v-show="isUserMenuOpen"
+                @mouseenter="handleMouseEnter"
+                @mouseleave="handleMouseLeave"
+                class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 py-1 z-50"
+            >
+                <div class="px-4 py-3 border-b border-gray-100">
+                    <p class="text-sm font-medium text-gray-900">{{ authStore.user?.username || '未登录' }}</p>
+                    <p class="text-xs text-gray-500">{{ authStore.user?.email }}</p>
                 </div>
 
-                <!-- 菜单选项 -->
-                <router-link to="/user/profile" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800">
+                <router-link
+                    to="/user/profile"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                >
                     个人资料
                 </router-link>
 
-                <router-link to="/user/change-password" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800">
+                <router-link
+                    to="/user/change-password"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                >
                     修改密码
                 </router-link>
 
-                <button @click="handleLogout" class="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-800">
+                <button
+                    @click="handleLogout"
+                    class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                >
                     退出登录
                 </button>
             </div>
@@ -45,7 +57,6 @@ import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 
-// ...原user menu逻辑...
 const router = useRouter()
 const authStore = useAuthStore()
 
@@ -76,3 +87,109 @@ const handleLogout = () => {
     router.push('/login')
 }
 </script>
+
+<style scoped>
+.recharge-wrap {
+    position: relative;
+    display: inline-block;
+    isolation: isolate;
+}
+
+/* 黑色胶囊主体 */
+.recharge-btn {
+    position: relative;
+    background: #0b0d10;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 9999px;
+    font-weight: 600;
+    line-height: 1;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+    transition: transform .15s ease;
+}
+
+.recharge-btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 1;
+}
+
+/* 流动彩虹边框 - 使用线性渐变沿边缘流动 */
+.recharge-btn::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    /* 覆盖边框区域 */
+    padding: 2px;
+    border-radius: inherit;
+    background: linear-gradient(90deg,
+            #ff3cac 0%,
+            #784ba0 16.67%,
+            #2b86c5 33.33%,
+            #23a6d5 50%,
+            #23d5ab 66.67%,
+            #f7b42c 83.33%,
+            #ff3cac 100%);
+    background-size: 300% 100%;
+    /* 拉长背景以实现流动效果 */
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    ;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+    animation: border-flow 3s linear infinite;
+}
+
+/* 底部光晕 - 同样使用 background-position 流动 */
+.recharge-btn::after {
+    content: "";
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: -8px;
+    height: 14px;
+    border-radius: 9999px;
+    filter: blur(12px);
+    opacity: .9;
+    z-index: -2;
+    background: linear-gradient(90deg,
+            #ff3cac 0%,
+            #784ba0 16.67%,
+            #2b86c5 33.33%,
+            #23a6d5 50%,
+            #23d5ab 66.67%,
+            #f7b42c 83.33%,
+            #ff3cac 100%);
+    background-size: 300% 100%;
+    animation: border-flow 3s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes border-flow {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 300% 0%;
+        /* 向右流动 */
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .recharge-btn::before,
+    .recharge-btn::after {
+        animation: none;
+    }
+}
+</style>

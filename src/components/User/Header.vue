@@ -1,16 +1,17 @@
 <template>
-  <header class="h-16 bg-[#111827]/90 backdrop-blur-sm border-b border-gray-800 flex items-center justify-between px-8">
-    <div class="h-16 flex items-center justify-center text-2xl font-bold text-white border-b border-gray-800">
-      <span>IPNEXO</span>
+  <header class="bg-white border-b border-gray-200">
+    <div class="h-16 px-6 md:px-8 flex items-center justify-between">
+      <div class="text-2xl font-bold text-gray-900">IPNEXO</div>
+
+      <!-- 顶部导航（示例，可按需修改/隐藏） -->
+      <nav class="hidden md:flex items-center space-x-6 text-sm">
+        <router-link to="/" class="text-gray-600 hover:text-gray-900">首页</router-link>
+        <a href="#services" class="text-gray-600 hover:text-gray-900">产品服务</a>
+        <a href="#contact" class="text-gray-600 hover:text-gray-900">联系我们</a>
+      </nav>
+
+      <UserMenu />
     </div>
-    <div class="flex items-center space-x-6 text-sm">
-      <a href="#" class="text-gray-300 hover:text-white transition-colors">海外代理IP</a>
-      <a href="#" class="text-gray-300 hover:text-white transition-colors">跨境网络专线</a>
-      <a href="#" class="text-gray-300 hover:text-white transition-colors">用户教程</a>
-      <a href="#" class="text-gray-300 hover:text-white transition-colors">资源中心</a>
-      <a href="#" class="text-gray-300 hover:text-white transition-colors">代理合作</a>
-    </div>
-    <UserMenu />
   </header>
 </template>
 

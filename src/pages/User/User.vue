@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[#0A0F1C] text-gray-300 font-sans min-h-screen flex flex-col">
+  <div class="bg-white text-gray-300 font-sans min-h-screen flex flex-col">
     <!-- 头部 -->
     <Header />
     
@@ -13,7 +13,7 @@
       </div>
     </div>
     
-    <FloatingActions />
+    <!-- <FloatingActions /> -->
   </div>
 </template>
 

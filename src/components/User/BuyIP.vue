@@ -1,15 +1,15 @@
 <template>
   <div class="p-8">
-    <h2 class="text-2xl font-bold text-white mb-6">购买静态IP</h2>
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">购买静态IP</h2>
     
-    <div class="bg-[#111827] rounded-lg p-6 max-w-2xl">
+    <div class="bg-white rounded-lg p-6 max-w-2xl">
       <form @submit.prevent="handleSubmit" class="space-y-6">
         <!-- 国家/地区选择 -->
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-2">国家/地区</label>
+          <label class="block text-sm font-medium text-gray-900 mb-2">国家/地区</label>
           <select 
             v-model="formData.country"
-            class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            class="w-full bg-white border border-gray-900 rounded-md px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500"
             @change="calculatePrice"
           >
             <option v-for="country in countries" :key="country.code" :value="country.code">
@@ -20,19 +20,19 @@
 
         <!-- IP数量 -->
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-2">IP购买数量</label>
+          <label class="block text-sm font-medium text-gray-900 mb-2">IP购买数量</label>
           <input 
             type="number" 
             v-model="formData.quantity"
             min="1"
-            class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            class="w-full bg-white border border-gray-800 rounded-md px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
             @input="calculatePrice"
           >
         </div>
 
         <!-- 套餐选择 -->
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-2">套餐周期</label>
+          <label class="block text-sm font-medium text-gray-900 mb-2">套餐周期</label>
           <div class="grid grid-cols-4 gap-4">
             <button
               v-for="plan in plans"
@@ -40,8 +40,8 @@
               type="button"
               :class="[
                 formData.plan === plan.value
-                  ? 'bg-cyan-600 text-white'
-                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600',
+                  ? 'bg-black text-white border border-gray-800'
+                  : 'bg-white text-black border border-gray-800 hover:bg-gray-100',
                 'px-4 py-2 rounded-md text-sm font-medium transition-colors'
               ]"
               @click="selectPlan(plan.value)"
@@ -53,10 +53,10 @@
 
         <!-- 业务用途 -->
         <div>
-          <label class="block text-sm font-medium text-gray-300 mb-2">业务用途</label>
+          <label class="block text-sm font-medium text-gray-900 mb-2">业务用途</label>
           <select 
             v-model="formData.usage"
-            class="w-full bg-gray-700 border border-gray-600 rounded-md px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            class="w-full bg-white border border-gray-800 rounded-md px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500"
             @change="calculatePrice"
           >
             <option v-for="usage in usages" :key="usage.value" :value="usage.value">
@@ -68,15 +68,15 @@
         <!-- 价格显示 -->
         <div class="pt-4 border-t border-gray-700">
           <div class="flex justify-between items-center">
-            <span class="text-gray-300">总价：</span>
-            <span class="text-2xl font-bold text-cyan-500">￥{{ totalPrice }}</span>
+            <span class="text-gray-900">总价：</span>
+            <span class="text-2xl font-bold text-gray-900">￥{{ totalPrice }}</span>
           </div>
         </div>
 
         <!-- 提交按钮 -->
         <button
           type="submit"
-          class="w-full bg-cyan-600 text-white py-3 rounded-md hover:bg-cyan-700 transition-colors font-medium"
+          class="w-full bg-black text-white py-3 rounded-md transition-colors font-medium"
         >
           立即支付
         </button>

@@ -36,11 +36,11 @@
                         src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
                         alt="[用户头像]">
                 </div>
-                <div class="flex space-x-4">
+                <div class="flex flex-nowrap space-x-4"> <!-- 添加 flex-nowrap -->
                     <a href="#"
-                        class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300">了解更多</a>
+                        class="whitespace-nowrap bg-blue-600 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300">了解更多</a>
                     <a href="#"
-                        class="bg-white text-gray-700 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 border border-gray-300 transition-all duration-300">联系我们</a>
+                        class="whitespace-nowrap bg-white text-gray-700 px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 border border-gray-300 transition-all duration-300">联系我们</a>
                 </div>
             </div>
         </div>
