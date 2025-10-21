@@ -76,7 +76,7 @@
         <!-- 提交按钮 -->
         <button
           type="submit"
-          class="w-full bg-black text-white py-3 rounded-md transition-colors font-medium"
+          class="w-full bg-black text-white py-3 rounded-md transition-colors font-medium btn-rainbow"
         >
           立即支付
         </button>

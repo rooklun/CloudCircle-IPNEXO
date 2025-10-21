@@ -12,7 +12,8 @@
                 @mouseleave="handleMouseLeave"
                 class="w-8 h-8 bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-50 border border-gray-200 shadow-sm"
             >
-                <img class="h-5 w-5" src="@/assets/img/user-user.png" alt="用户">
+                <!-- <img class="h-5 w-5" src="@/assets/img/user-user.png" alt="用户"> -->
+                <UserCircleIcon class="h-5 w-5 text-gray-900" />
             </div>
 
             <!-- 用户菜单（浅色主题） -->
@@ -28,14 +29,14 @@
                 </div>
 
                 <router-link
-                    to="/user/profile"
+                    to="/user/account-settings"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                 >
                     个人资料
                 </router-link>
 
                 <router-link
-                    to="/user/change-password"
+                    to="/user/account-settings"
                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
                 >
                     修改密码
@@ -56,6 +57,8 @@
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { UserCircleIcon } from '@heroicons/vue/24/outline';
+
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -79,7 +82,7 @@ const handleMouseEnter = () => {
 const handleMouseLeave = () => {
     closeTimeout.value = setTimeout(() => {
         isUserMenuOpen.value = false
-    }, 300) // 300ms 的延迟，您可以根据需要调整这个值
+    }, 100) // 300ms 的延迟，您可以根据需要调整这个值
 }
 
 const handleLogout = () => {

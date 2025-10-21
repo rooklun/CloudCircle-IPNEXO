@@ -44,6 +44,56 @@ const routes = [
         name: "ManageIP",
         component: () => import("@/components/User/ManageIP.vue"),
       },
+      {
+        path: "buy-line",
+        name: "BuyLine",
+        component: () => import("@/components/User/BuyLine.vue"),
+      },
+      {
+        path: "manage-line",
+        name: "ManageLine",
+        component: () => import("@/components/User/ManageLine.vue"),
+      },
+      {
+        path: "buy-traffic",
+        name: "BuyTraffic",
+        component: () => import("@/components/User/BuyTraffic.vue"),
+      },
+      {
+        path: "manage-traffic",
+        name: "ManageTraffic",
+        component: () => import("@/components/User/ManageTraffic.vue"),
+      },
+      {
+        path: "kyc",
+        name: "kyc",
+        component: () => import("@/components/User/KYC.vue"),
+      },
+      {
+        path: "account-settings",
+        name: "AccountSettings",
+        component: () => import("@/components/User/AccountSettings.vue"),
+      },
+      {
+        path: "orders",
+        name: "Orders",
+        component: () => import("@/components/User/Orders.vue"),
+      },
+      {
+        path: "affiliate",
+        name: "Affiliate",
+        component: () => import("@/components/User/Affiliate.vue"),
+      },
+      {
+        path: "help-center",
+        name: "HelpCenter",
+        component: () => import("@/components/User/HelpCenter.vue"),
+      },
+      {
+        path: "demodocs",
+        name: "DemoDocs",
+        component: () => import("@/components/User/DemoDocs.vue"),
+      }
     ],
     meta: {
       requiresAuth: true, // 添加需要认证的标记

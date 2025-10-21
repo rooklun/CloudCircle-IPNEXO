@@ -13,3 +13,101 @@ body {
 .gradient-bg {
   background: linear-gradient(180deg, #fdf7f2 0%, #ffffff 100%);
 }
+/* 与用户菜单充值一致：黑底、彩虹流动边框、底部光晕；仅改变外观，不改变尺寸 */
+.btn-rainbow {
+  position: relative;
+  background: #0b0d10;
+  /* 黑色主体 */
+  color: #fff;
+  /* 白字 */
+  border-radius: inherit;
+  /* 继承 rounded-md */
+  border: none;
+  /* 渐变边框由伪元素绘制 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+  transition: transform .15s ease, background-color .2s ease;
+  isolation: isolate;
+  /* 让伪元素正确分层 */
+}
+
+.btn-rainbow:hover {
+  transform: translateY(-1px);
+}
+
+/* 流动彩虹“边框” */
+.btn-rainbow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  /* 边框厚度 */
+  padding: 2px;
+  border-radius: inherit;
+  background: linear-gradient(90deg,
+      #ff3cac 0%,
+      #784ba0 16.67%,
+      #2b86c5 33.33%,
+      #23a6d5 50%,
+      #23d5ab 66.67%,
+      #f7b42c 83.33%,
+      #ff3cac 100%);
+  background-size: 300% 100%;
+  /* 拉长便于流动 */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  ;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  /* 只保留边框区域 */
+  z-index: -1;
+  animation: border-flow 3s linear infinite;
+  /* 沿边框流动，而非整体旋转 */
+}
+
+/* 底部彩虹光晕（与边框同速流动） */
+.btn-rainbow::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: -8px;
+  height: 14px;
+  border-radius: 9999px;
+  filter: blur(12px);
+  opacity: .9;
+  z-index: -2;
+  background: linear-gradient(90deg,
+      #ff3cac 0%,
+      #784ba0 16.67%,
+      #2b86c5 33.33%,
+      #23a6d5 50%,
+      #23d5ab 66.67%,
+      #f7b42c 83.33%,
+      #ff3cac 100%);
+  background-size: 300% 100%;
+  animation: border-flow 3s linear infinite;
+  /* 与边框同步“流动” */
+  pointer-events: none;
+}
+@keyframes border-flow {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 300% 0%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .btn-rainbow::before,
+  .btn-rainbow::after {
+    animation: none;
+  }
+}
