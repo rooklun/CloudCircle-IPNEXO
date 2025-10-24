@@ -5,9 +5,10 @@
 
       <form @submit.prevent="login" class="space-y-6">
         <input
-          v-model="username"
-          type="text"
-          placeholder="邮箱 / 用户名"
+          v-model="phone"
+          type="tel"
+          inputmode="numeric"
+          placeholder="手机号"
           class="w-full p-3 border border-gray-300 bg-white text-gray-800 rounded-lg placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 transition"
           required
         />
@@ -42,38 +43,37 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
-import { useAuthStore } from '@/stores/auth'
-import http from '@/utils/http'
-import API_BASE_URL from '@/config/api.ts'
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
+import http from '@/utils/http';
+import API_BASE_URL from '@/config/api.ts';
 
+const router = useRouter();
+const authStore = useAuthStore();
 
-const router = useRouter()
-const route = useRoute()
-const authStore = useAuthStore()
-
-const username = ref(''); // 用于绑定用户名或邮箱
+const phone = ref('');
 const password = ref('');
 const errorMsg = ref('');
-const success = ref(false)
+const success = ref(false);
 
 onMounted(() => {
   if (authStore.isLoggedIn) {
     router.push('/user')
   }
-})
+});
 
 const login = async () => {
   errorMsg.value = '';
 
-  if (!username.value || !password.value) {
-    errorMsg.value = '请输入用户名/邮箱和密码。';
+  if (!phone.value || !password.value) {
+    errorMsg.value = '请输入手机号和密码。';
     return;
   }
 
   try {
+    // http 拦截器已返回 res.data，这里拿到的是后端数据对象
     const data = await http.post(`${API_BASE_URL}/api/auth/login`, {
-      username: username.value,
+      phone: phone.value.trim(),
       password: password.value
     });
 
@@ -84,6 +84,8 @@ const login = async () => {
       authStore.setUser(data.user);
       success.value = true;
       setTimeout(() => router.push('/user'), 1200);
+    } else {
+      errorMsg.value = data?.message || '登录失败，请稍后再试';
     }
   } catch (error) {
     console.error('登录失败:', error);
@@ -93,7 +95,7 @@ const login = async () => {
           errorMsg.value = error.response.data.errors?.[0]?.msg || '输入数据有误，请检查';
           break;
         case 401:
-          errorMsg.value = error.response.data.message || '账号或密码错误';
+          errorMsg.value = error.response.data.message || '手机号或密码错误';
           break;
         default:
           errorMsg.value = '网络错误';

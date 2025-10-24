@@ -7,6 +7,6 @@
 </template>
 
 <script setup>
-import Header from '@/components/NewIndex/Header.vue'
-import Footer from '@/components/NewIndex/Footer.vue'
+import Header from '@/components/Index/Header.vue'
+import Footer from '@/components/Index/Footer.vue'
 </script>
