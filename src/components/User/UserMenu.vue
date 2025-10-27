@@ -24,8 +24,8 @@
                 class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 py-1 z-50"
             >
                 <div class="px-4 py-3 border-b border-gray-100">
-                    <p class="text-sm font-medium text-gray-900">{{ authStore.user?.username || '未登录' }}</p>
-                    <p class="text-xs text-gray-500">{{ authStore.user?.email }}</p>
+                    <p class="text-sm font-medium text-gray-900">{{ authStore.user?.phone || '未登录' }}</p>
+                    <p class="text-xs text-gray-500">UID: {{ authStore.user?.uid }}</p>
                 </div>
 
                 <router-link
