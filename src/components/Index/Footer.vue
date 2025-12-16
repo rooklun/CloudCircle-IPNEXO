@@ -48,18 +48,19 @@
                     </svg>
                     <div>
                         <p class="font-bold text-lg text-white">IPNEXO</p>
-                        <p><a href="https://beian.miit.gov.cn/#/Integrated/index">沪ICP备2025146986号-1</a></p>
+                        <p><a href="https://beian.miit.gov.cn/#/Integrated/index" rel="noreferrer"
+                                target="_blank">沪ICP备2025146986号-1</a></p>
                         <a href="mailto:info@ipnexo.com" class="text-sm hover:text-white">ShCloudCircle@outlook.com</a>
-                        
+
                     </div>
                 </div>
                 <div class="mt-6 md:mt-0 text-center">
                     <!-- <p class="text-xs"><a href="#" class="hover:text-white">服务条款</a></p>
                     <p class="text-xs"><a href="#" class="hover:text-white">隐私政策</a></p> -->
                     <p class="text-sm">版权所有 © 2025 IPNEXO. 版权所有。</p>
-                    
-                    
-                    
+
+
+
                 </div>
                 <div class="mt-6 md:mt-0 flex flex-col space-y-4 text-sm">
 
@@ -70,7 +71,6 @@
                         <span>沪公网安备31011202021514号</span>
                     </a>
 
-                    
 
                 </div>
             </div>

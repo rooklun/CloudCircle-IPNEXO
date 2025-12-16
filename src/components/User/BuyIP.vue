@@ -100,9 +100,31 @@ const totalPrice = ref(0)
 
 const countries = ref([
   { code: 'US', name: '美国' },
+  { code: 'TH', name: '泰国' },
   { code: 'JP', name: '日本' },
-  { code: 'KR', name: '韩国' },
-  // ...更多国家
+  { code: 'KR', name: '马来西亚' },
+  { code: 'VN', name: '越南' },
+  { code: 'PH', name: '菲律宾' },
+  { code: 'MY', name: '马来西亚' },
+  { code: 'ID', name: '印尼' },
+  { code: 'SG', name: '新加坡' },
+  { code: 'HK', name: '香港' },
+  { code: 'TW', name: '台湾' },
+  { code: 'AU', name: '澳大利亚' },
+  { code: 'NZ', name: '新西兰' },
+  { code: 'CA', name: '加拿大' },
+  { code: 'DE', name: '德国' },
+  { code: 'FR', name: '法国' },
+  { code: 'IT', name: '意大利' },
+  { code: 'ES', name: '西班牙' },
+  { code: 'NL', name: '荷兰' },
+  { code: 'BE', name: '比利时' },
+  { code: 'SE', name: '瑞典' },
+  { code: 'NO', name: '挪威' },
+  { code: 'DK', name: '丹麦' },
+  { code: 'FI', name: '芬兰' },
+  { code: 'LT', name: '立陶宛' },
+  { code: 'CZ', name: '捷克' }
 ])
 
 const plans = [
